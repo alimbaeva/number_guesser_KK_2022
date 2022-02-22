@@ -12,6 +12,8 @@ let attemptCount = 0;
 const number = Math.floor(Math.random() * (max - min) + min);
 minNum.textContent = min;
 maxNum.textContent = max;
+input.focus();
+console.log('winning numbe : ', number)
 
 button.addEventListener('click', game);
 function game() {
@@ -26,6 +28,7 @@ function game() {
             attemptCount++;
             message.textContent = `Вы ошиблись. У вас осталось ${attemptChange} попыток`
             input.value = ``;
+            input.focus();
             if (attemptChange === 0) {
                 input.disabled = true;
                 input.setAttribute('placeholder', 'У Вас нету попыток')
@@ -34,9 +37,6 @@ function game() {
             }
 
         }
-
-        console.log(number)
-        console.log(attemptCount)
     } else {
         restart();
     }
