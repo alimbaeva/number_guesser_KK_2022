@@ -3,6 +3,7 @@ const maxNum = document.querySelector('.max-num');
 const input = document.querySelector('input');
 const button = document.querySelector('button');
 const message = document.querySelector('.message');
+const guessBtn = document.querySelector('#guess-btn');
 let min = 1;
 let max = 10;
 let attempt = 3;
@@ -12,26 +13,34 @@ const number = Math.floor(Math.random() * (max - min) + min);
 minNum.textContent = min;
 maxNum.textContent = max;
 
-document.addEventListener('keyup', event => {
-    if (event.code === 'Enter') {
+button.addEventListener('click', game);
+function game() {
+    if (button.value === 'Играть') {
         if (+(input.value) === number) {
             message.textContent = `Поздравляю вы выиграли ваше число ${input.value}`;
             input.disabled = true;
+            button.setAttribute('value', 'Новая игра');
+            button.textContent = 'Новая игра';
         } else {
             attemptChange--;
             attemptCount++;
             message.textContent = `Вы ошиблись. У вас осталось ${attemptChange} попыток`
             input.value = ``;
-            if (attemptChange === 0) { input.disabled = true; input.setAttribute('placeholder', 'У Вас нету попыток') }
+            if (attemptChange === 0) {
+                input.disabled = true;
+                input.setAttribute('placeholder', 'У Вас нету попыток')
+                button.setAttribute('value', 'Новая игра');
+                button.textContent = 'Новая игра';
+            }
 
         }
 
         console.log(number)
         console.log(attemptCount)
+    } else {
+        restart();
     }
-});
-
-button.addEventListener('click', restart);
+}
 
 function restart() {
     location.reload();
