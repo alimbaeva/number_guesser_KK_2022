@@ -22,7 +22,7 @@ document.addEventListener('keyup', event => {
             attemptCount++;
             message.textContent = `Вы ошиблись. У вас осталось ${attemptChange} попыток`
             input.value = ``;
-            if (attemptChange === 0) { input.disabled = true; }
+            if (attemptChange === 0) { input.disabled = true; input.setAttribute('placeholder', 'У Вас нету попыток') }
 
         }
 
